@@ -1,5 +1,11 @@
 //Author said mmevela
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:hossana/pages/list.dart';
+import 'package:http/http.dart' as http;
+
 class Login extends StatefulWidget {
   const Login({ Key? key }) : super(key: key);
 
@@ -15,6 +21,70 @@ class _LoginState extends State<Login> {
   TextEditingController _username = TextEditingController();
   TextEditingController _password = TextEditingController();
 
+  void login()async{
+      Map log={
+        "email":_username.text,
+        "password":_password.text
+      };
+    var  Url="https://reqres.in/api/login";
+    try {
+      var response =await http.post(Uri.parse(Url), body:log).timeout(Duration(seconds: 30));
+      var data = jsonDecode(response.body);
+      var bytess = response.body;
+      print('class1:${response.statusCode}');
+      print('class1:${bytess}');
+
+      if(response.statusCode == 200){
+          Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context)=>
+                        ListItems()
+                      )
+                    );
+      }else{
+        var err=data["error"];
+        showDialog(
+            context: context, 
+            barrierDismissible: false,
+            builder: (BuildContext context){
+              return AlertDialog(
+                title: Center(child:  Text(err,textAlign: TextAlign.center,style: TextStyle(),)),
+                actions: <Widget>[
+                  TextButton(
+                  onPressed:(){
+                    Navigator.of(context).pop();
+                  }, 
+                  child: const Text("ok")),
+                ],
+              );
+            }
+          );
+      }
+      
+      
+    }
+    on SocketException{
+        showDialog(
+            context: context, 
+            barrierDismissible: false,
+            builder: (BuildContext context){
+              return AlertDialog(
+                title: Center(child:  Text("Check your internet connection",textAlign: TextAlign.center,style: TextStyle(),)),
+                actions: <Widget>[
+                  TextButton(
+                  onPressed:(){
+                    Navigator.of(context).pop();
+                  }, 
+                  child: const Text("ok")),
+                ],
+              );
+            }
+        );
+    }
+
+
+  }
 
 
   @override
@@ -118,7 +188,7 @@ class _LoginState extends State<Login> {
                       onPressed: () async {
                         if(_formKey.currentState!.validate()){
                             
-                          
+                          login();
                         }
                         
                       }
