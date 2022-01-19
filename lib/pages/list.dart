@@ -30,8 +30,6 @@ class _ListItemsState extends State<ListItems> {
           var data = jsonDecode(response.body);
           var data1=data["data"];
           Iterable pst =data1;
-          print('class1:${response.statusCode}');
-          print('class2:${response.body}');
           setState(() {
             post=pst.map((model)=>Post.fromJson(model)).toList();
             load=false;

@@ -1,5 +1,4 @@
 //Author said mmevela
-import 'dart:convert';
 
 class Owner{
   String id,title,firstname,lastname,picture;

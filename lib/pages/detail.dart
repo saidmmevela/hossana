@@ -27,8 +27,6 @@ class _DetailState extends State<Detail> {
           var data = jsonDecode(response.body);
           var data1=data["data"];
           Iterable comnt =data1;
-          print('class1:${response.statusCode}');
-          print('class2:${response.body}');
           setState(() {
             comments=comnt.map((model)=>Comment.fromJson(model)).toList();
             
@@ -43,7 +41,7 @@ class _DetailState extends State<Detail> {
   @override
   void initState() {
     super.initState();
-    var id=widget.post.id;
+    
     getComments();
 
   }

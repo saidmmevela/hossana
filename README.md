@@ -1,16 +1,32 @@
 # hossana
 
-A new Flutter project.
+A Hossana Flutter project.
 
-## Getting Started
+# Getting Started
 
-This project is a starting point for a Flutter application.
+In order to build & deploy Hossana app to specific, just run:
 
-A few resources to get you started if this is your first Flutter project:
+$ flutter build android|ios
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+If want you want to test the app, first run flutter devices to check connected devices. Then, you'll have to run:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+$ flutter run --no-sound-null-safety -d DEVICE 
+
+
+# Download & install
+First, clone the repository with the 'clone' command, or just download the zip.
+
+$ git clone https://github.com/saidmmevela/hossana.git
+Then, download either Android Studio or Visual Studio Code.
+
+Install dependencies from pubspec.yaml by running flutter packages get from the project root.
+
+There you go, you can now open,edit & run the project. Enjoy!
+
+
+# Built with
+Flutter.
+Visual Studio Code - Code editing.
+
+# Authors
+Said Mmevela
