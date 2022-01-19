@@ -20,7 +20,7 @@ class Post{
   Owner owner;
 
   Post.fromJson(Map json)
-    : id =json['_id'],
+    : id =json['id'],
       text=json['text'],
       image=json['image'],
       tags=json['tags'],
@@ -28,8 +28,17 @@ class Post{
       publishDate=json['publishDate'],
       owner=new Owner.fromJson(json['owner']);
 
-      Map toJson(){
-        return {'_id':id,'text':text,'image':image,'likes':likes,'publishDate':publishDate};
-      }
-  
+}
+
+class Comment{
+  String message,id,publishDate,post;
+  Owner owner;
+
+  Comment.fromJson(Map json)
+    : id =json['id'],
+      message=json['message'],
+      post=json['post'],
+      publishDate=json['publishDate'],
+      owner=new Owner.fromJson(json['owner']);
+
 }
